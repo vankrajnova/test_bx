@@ -19,7 +19,6 @@ class Application:
         wd.find_element_by_css_selector("span.pseudolink.link-white").click()
 
 
-
     def check_empty(self, success):
         wd = self.wd
         if (len(wd.find_elements_by_xpath(".//*[@id='auth_form']/div/form/div/div[1]/p/font")) != 0):
@@ -43,11 +42,9 @@ class Application:
         return success
 
 
-
     def open_personal_account(self):
         wd = self.wd
         wd.find_element_by_xpath(".//*[@id='top']/div/div[2]/div/form/div/a/span").click()
-
 
 
     def destroy(self):
