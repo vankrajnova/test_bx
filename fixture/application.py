@@ -35,7 +35,7 @@ class Application:
             success = True
             print(True)
         else:
-            if not (len(wd.find_element_by_xpath(".//*[@id='auth_form']/div/form/div/div[1]/p/font")) == 0):
+            if (len(wd.find_element_by_xpath(".//*[@id='auth_form']/div/form/div/div[1]/p/font")) == 0):
                 success = False
                 print(False)
         return success

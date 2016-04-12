@@ -40,27 +40,39 @@ class RegisterHelper:
             "//div[@class='all-wrap']/div[3]/div/div[2]/form[1]/div[9]/div[2]/div/div[1]/div[1]").click()
         wd.find_element_by_xpath(
             "//div[@class='all-wrap']/div[3]/div/div[2]/form[1]/div[9]/div[2]/div/div[2]/ul/li").click()
-        self.open_verification_phone_page()
+        wd.find_element_by_name("next_step").click()
 
 
-    def check_login(self, success):
+
+    def check_register_empty(self, success):
         wd = self.app.wd
-        if (len(wd.find_elements_by_xpath(".//*[@id='top']/div/div[2]/div/form/div/a/span")) != 0):
+        if (len(wd.find_elements_by_xpath("//div[@class='all-wrap']//button[.='Назад']")) == 0):
             success = True
             print(True)
         else:
-            if (len(wd.find_elements_by_xpath(".//*[@id='top']/div/div[2]/div/form/div/a/span")) == 0):
+            if (len(wd.find_element_by_xpath("//div[@class='all-wrap']//button[.='Назад']")) != 0):
                 success = False
                 print(False)
         return success
 
 
-    def open_verification_phone_page(self):
+    def check_register(self, success):
         wd = self.app.wd
-        wd.find_element_by_name("next_step").click()
-        self.verification_phone()
+        if (len(wd.find_elements_by_xpath("//div[@class='all-wrap']//button[.='Назад']")) != 0):
+            success = True
+            print(True)
+        else:
+            if (len(wd.find_element_by_xpath("//div[@class='all-wrap']//button[.='Назад']")) == 0):
+                success = False
+                print(False)
+        return success
 
 
-    def verification_phone(self):
+    def return_to_register_form(self, success):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//div[@class='all-wrap']//button[.='Назад']").click()
+
+
+    def verification_phone(self, success):
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@class='all-wrap']//button[.='Отправить']").click()
