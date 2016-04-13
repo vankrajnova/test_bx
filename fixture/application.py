@@ -1,13 +1,23 @@
-from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.register import RegisterHelper
 
+
 class Application:
-    def __init__(self):
-        self.wd = WebDriver()
-        self.wd.implicitly_wait(30)
+    def __init__(self, browser, base_url):
+        if browser == "firefox":
+            self.wd = webdriver.Firefox()
+        elif browser == "chrome":
+            self.wd = webdriver.Chrome()
+        elif browser == "ie":
+            self.wd = webdriver.Ie()
+        else:
+            raise ValueError("Unrecognized browser %s" % browser)
+        self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)
         self.register = RegisterHelper(self)
+        self.base_url = base_url
+
 
 
     def is_valid(self): # блок исключений
@@ -20,7 +30,7 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://bx.marya.ru/")
+        wd.get(self.base_url)
 
 
     def open_auth_form(self):
