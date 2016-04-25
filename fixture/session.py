@@ -18,6 +18,7 @@ class SessionHelper:
         wd.find_element_by_name("Login").click()
 
 
+
     def close_auth_form(self, success):
         wd = self.app.wd
         wd.find_element_by_css_selector("div.mfp-close.cn-modal-close").click()
